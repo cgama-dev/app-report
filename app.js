@@ -16,7 +16,7 @@ dataDirectory = path.join(rootDirectory, 'script');
 //Setando a porta
 app.set('port', process.env.PORT || 8000);
 
-var service = http.createServer(function (req, res) {
+var service = http.createServer(function (req, res) {       
     jsreport.init().then(function () {
         jsreport.render({
             template: {

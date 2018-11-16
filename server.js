@@ -13,16 +13,13 @@ var mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 // mongodb connection
-mongoose.connect("mongodb://localhost:27017/appreport", {
-    useMongoClient: true,
-    promiseLibrary: global.Promise
-});
+mongoose.connect("mongodb://cgamadev:cgama123@ds161856.mlab.com:61856/appreport");
 
 var db = mongoose.connection;
 
-// mongodb error
 db.on('error', console.error.bind(console, 'connection error:'));
 
+// mongodb error
 // mongodb connection open
 db.once('open', () => {
     console.log(`Connected to Mongo at: ${new Date()}`)
@@ -39,28 +36,7 @@ var reportSchema = mongoose.Schema({
     }
 });
 
-// kittySchema.methods.speak = function () {
-//   var greeting = this.name
-//     ? "Meow name is " + this.name
-//     : "I don't have a name";
-//   console.log(greeting);
-// }
-
 var AppReport = mongoose.model('Projects', reportSchema);
-
-//var fluffy = new Kitten({ name: 'fluffy' });
-
-/*fluffy.save(function (err, fluffy) {
-  if (err) return console.error(err);
-  fluffy.speak();
-});*/
-
-/*var page = fs.readFileSync(path.join(__dirname, 'template', 'page.html'), 'utf8');
-var header = fs.readFileSync(path.join(__dirname, 'template', 'header.html'), 'utf8');
-var footer = fs.readFileSync(path.join(__dirname, 'template', 'footer.html'), 'utf8');
-var data = fs.readFileSync(path.join(__dirname, 'data', 'data.json'), 'utf8');
-var helpers = fs.readFileSync(path.join(__dirname, 'helpers', 'helpers.js'), 'utf8');*/
-
 
 var reportingApp = express();
 
