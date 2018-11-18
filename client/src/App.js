@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import Home from './layout/Home'
-import Header from './layout/Header'
-import Footer from './layout/Footer'
+
 import { Provider } from 'react-redux'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+
+import Report from './Report'
+
 import store from './redux'
+
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <Header />
-          <Home />
-          <Footer />
-        </div>
+        <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/report" component={Report} />
+          </div>
+        </Router>
       </Provider>
     );
   }

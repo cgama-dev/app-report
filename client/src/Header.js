@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Button, Image, Icon, Modal, Header as HeaderModal } from 'semantic-ui-react'
 
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
     constructor(props) {
@@ -19,7 +20,9 @@ class Header extends Component {
         return (
             <div>
                 <Menu inverted>
-                    <Menu.Item active>REPORT-PDF</Menu.Item>
+                    <Menu.Item as={Link} to='/' active>REPORT-PDF</Menu.Item>
+                    <Menu.Item > <Icon name='play' /> Executar</Menu.Item>
+                    <Menu.Item > <Icon name='save' /> Salvar</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
                             <Button onClick={this.show('inverted')} inverted color='green' >
