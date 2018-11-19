@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Button, Image, Icon, Modal, Header as HeaderModal } from 'semantic-ui-react'
+import { Menu, Button, Icon, Modal, Header as HeaderModal } from 'semantic-ui-react'
 
 
 class Header extends Component {

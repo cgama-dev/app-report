@@ -8,5 +8,4 @@ export const { Types, Creators } = createActions({
     getProjectsFailure: null
 })
 
-
 export default Creators

@@ -7,6 +7,7 @@ var fs = require("fs"),
 var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile');
 var async = require('async');
+var cors = require('cors')
 
 var mongoose = require('mongoose');
 // ES6 promises
@@ -49,7 +50,10 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 app.use(express.static(path.join(__dirname, './www')));
 
+app.use(cors())
+
 app.use('/reporting', reportingApp);
+
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/www/index.html');
