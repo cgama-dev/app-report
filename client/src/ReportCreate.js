@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import { Container, Grid, Image, Segment, Input, Menu, Button, Icon, Modal, Header as HeaderModal, Form } from 'semantic-ui-react'
+import { Grid, Button, Icon, Modal, Form } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
 
 import ActionsCreators from './redux/actionsCreators'
 
-import { Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 
 class ReportCreate extends Component {
@@ -52,11 +52,13 @@ class ReportCreate extends Component {
             </Grid.Row>
         </Grid>
     )
-  
+
     render() {
+        if (this.props.isRedirect) {
+            return <Redirect to={`/report/${this.props.project.url}`} />
+        }
         return (
             <div>
-            
                 <Button inverted color='green' onClick={() => this.setState({ open: true })} >
                     <Icon name='plus circle' /> Criar novo projeto
                 </Button>
@@ -86,7 +88,8 @@ class ReportCreate extends Component {
 const mapStateToProps = (state) => {
     return {
         project: state.projects.project,
-        isLoading: state.projects.isLoading
+        isLoading: state.projects.isLoading,
+        isRedirect: state.projects.isRedirect
     }
 }
 

@@ -6,23 +6,34 @@ const INITIAL_STATE = {
     data: [],
     project:{},
     isLoading: false,
+    isRedirect: false,
     error: false
 }
 
-export const getProjectsRequest = (state = INITIAL_STATE, action) => {
+export const getReportRequest = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        isLoading: true,
+        isRedirect: false
+    }
+}
+
+export const getReportsRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         isLoading: true
     }
 }
-export const getProjectsSuccess = (state = INITIAL_STATE, action) => {
+
+export const getReportsSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         data: action.projects,
         isLoading: false
     }
 }
-export const getProjectsFailure = (state = INITIAL_STATE, action) => {
+
+export const getReportsFailure = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         error: true
@@ -32,7 +43,8 @@ export const getProjectsFailure = (state = INITIAL_STATE, action) => {
 export const createReportRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        isRedirect: false
     }
 }
 
@@ -40,7 +52,8 @@ export const createReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         project: action.project,
-        isLoading: false
+        isLoading: false,
+        isRedirect: true
     }
 }
 
@@ -51,15 +64,44 @@ export const createReportFailure = (state = INITIAL_STATE, action) => {
     }
 }
 
+export const saveReportRequest = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        isLoading: true,
+        isRedirect: false
+    }
+}
+
+export const saveReportSuccess = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        project: action.project,
+        isLoading: false,
+        isRedirect: true
+    }
+}
+
+export const saveReportFailure  = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        error: true
+    }
+}
+
 export const HANDLERS = {
-    [Types.GET_PROJECTS_REQUEST]: getProjectsRequest,
-    [Types.GET_PROJECTS_SUCCESS]: getProjectsSuccess,
-    [Types.GET_PROJECTS_FAILURE]: getProjectsFailure,
+    [Types.GET_REPORT_REQUEST]: getReportRequest,
+
+    [Types.GET_REPORTS_REQUEST]: getReportsRequest,
+    [Types.GET_REPORTS_SUCCESS]: getReportsSuccess,
+    [Types.GET_REPORTS_FAILURE]: getReportsFailure,
 
     [Types.CREATE_REPORT_REQUEST]: createReportRequest,
     [Types.CREATE_REPORT_SUCCESS]: createReportSuccess,
-    [Types.CREATE_REPORT_FAILURE]: createReportFailure
+    [Types.CREATE_REPORT_FAILURE]: createReportFailure,
 
+    [Types.SAVE_REPORT_REQUEST]: saveReportRequest,
+    [Types.SAVE_REPORT_SUCCESS]: saveReportSuccess,
+    [Types.SAVE_REPORT_FAILURE]: saveReportFailure
 
 }
 

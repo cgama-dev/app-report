@@ -1,16 +1,14 @@
 import ActionsCreators from './../actionsCreators'
 
-import { Types } from './../actionsCreators'
-
 import { put } from 'redux-saga/effects'
 
 import axios from 'axios'
 
-export function* getProjects() {
+export function* getReports() {
 
     const projects = yield axios.get('http://localhost:8000/all-projects')
 
-    yield put(ActionsCreators.getProjectsSuccess(projects.data.data))
+    yield put(ActionsCreators.getReportsSuccess(projects.data.data))
 }
 
 export function* createReport(action) {

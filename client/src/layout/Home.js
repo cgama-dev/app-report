@@ -4,14 +4,11 @@ import ActionCretors from './../redux/actionsCreators'
 
 import { Link } from 'react-router-dom'
 
-import { Container, List, Icon, Divider, Modal, Button } from 'semantic-ui-react';
+import { Container, List, Icon, Divider} from 'semantic-ui-react';
 
 import Header from './Header'
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         this.props.loadDataRequest()
@@ -59,7 +56,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadDataRequest: () => dispatch(ActionCretors.getProjectsRequest())
+        loadDataRequest: () => dispatch(ActionCretors.getReportsRequest())
     }
 }
 

@@ -8,9 +8,28 @@ import 'brace/mode/javascript';
 
 import 'brace/theme/twilight';
 
+import { connect } from 'react-redux'
+
+import ActionsCreators from './redux/actionsCreators'
+
 import { Grid, Tab, Container, Segment, Divider, Button } from 'semantic-ui-react'
 
 class Report extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        this.props.getReport()        
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.match.params.projectid !== prevProps.match.params.projectid){
+            this.props.getReport()
+        }
+    }
+    
     render() {
         const panes = [
             {
@@ -75,4 +94,16 @@ class Report extends Component {
     }
 }
 
-export default Report
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getReport: () => dispatch(ActionsCreators.getReportRequest())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Report)
