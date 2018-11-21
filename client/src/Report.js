@@ -1,12 +1,45 @@
 import React, { Component } from 'react'
 import Header from './Header';
+import AceEditor from 'react-ace';
+
+import brace from 'brace';
+
+import 'brace/mode/javascript';
+
+import 'brace/theme/twilight';
 
 import { Grid, Tab, Container, Segment, Divider, Button } from 'semantic-ui-react'
 
 class Report extends Component {
     render() {
         const panes = [
-            { menuItem: 'page', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
+            {
+                menuItem: 'page', render: () => <Tab.Pane>
+                    <AceEditor
+                        mode="javascript"
+                        theme="twilight"
+                        name="blah2"
+                        onLoad={this.onLoad}
+                        onChange={this.onChange}
+                        fontSize={14}
+                        showPrintMargin={true}
+                        showGutter={true}
+                        highlightActiveLine={true}
+                        value={`function onLoad(editor) {
+  console.log("i've loaded");
+}`}
+                        setOptions={{
+                            enableBasicAutocompletion: false,
+                            enableLiveAutocompletion: false,
+                            enableSnippets: false,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                        }} />
+
+
+
+                </Tab.Pane>
+            },
             { menuItem: 'helper', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
             { menuItem: 'data', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
             { menuItem: 'header', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
