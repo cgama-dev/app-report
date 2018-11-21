@@ -13,12 +13,12 @@
 //     });
 // });
 
-(function() {
+(function () {
     'use strict';
 
     angular.module('jsReportingApp', ['ui.router', 'angularModalService']);
 
-    angular.module('jsReportingApp').config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    angular.module('jsReportingApp').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
             .state('show_projects', {
                 url: "/",

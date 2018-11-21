@@ -4,7 +4,7 @@ import ActionCretors from './../redux/actionsCreators'
 
 import { Link } from 'react-router-dom'
 
-import { Container, List, Image, Icon, Divider, Modal, Button } from 'semantic-ui-react';
+import { Container, List, Icon, Divider, Modal, Button } from 'semantic-ui-react';
 
 import Header from './Header'
 
@@ -13,31 +13,36 @@ class Home extends Component {
         super(props)
     }
 
-    loadDataRequest = () => {
-        console.log("Lista de Projetos")
+    componentDidMount() {
+        this.props.loadDataRequest()
     }
 
-    componentDidMount() {
-        this.loadDataRequest()
-    }
+    handleProjects = (projects) => (
+        this.props.projects.map((item) => (
+            <List.Item key={item._id} as={Link} to={`/report/${item.url}`} >
+                <List.Content >
+                    <Icon name='file alternate outline' size='huge' />
+                    <List.Header as='span'> <h1>{item.projectName}</h1></List.Header>
+                </List.Content>
+            </List.Item>
+        ))
+    )
 
     render() {
         return (
             <div>
                 <Header />
-                <Container>
-                    <h1 align="center"> Todos os Projetos</h1>
-
-                </Container>
+                <br />
+                <h1 align="center"> Todos os Projetos </h1>
                 <Divider />
                 <Container>
                     <List horizontal relaxed='very'>
-                        <List.Item  as={Link} to='/report'>
-                            <List.Content >
-                                <Icon name='file alternate outline' size='huge' />
-                                <List.Header  as='a'> <h1>Elliot Fu</h1></List.Header>
-                            </List.Content>
-                        </List.Item>
+                        {this.handleProjects(this.props.projects)}
+                    </List>
+                </Container>
+                <Container>
+                    <List horizontal relaxed='very'>
+
                     </List>
                 </Container>
             </div>
@@ -47,13 +52,14 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        projects: state.projects
+        projects: state.projects.data,
+        isLoading: state.projects.isLoading
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadDataRequest: dispatch(ActionCretors.getProjectsSuccess())
+        loadDataRequest: () => dispatch(ActionCretors.getProjectsRequest())
     }
 }
 

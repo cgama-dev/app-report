@@ -8,16 +8,17 @@ const INITIAL_STATE = {
     error: false
 }
 
-
 export const getProjectsRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
+        isLoading: true
     }
 }
 export const getProjectsSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        data: action.projects
+        data: action.projects,
+        isLoading: false
     }
 }
 export const getProjectsFailure = (state = INITIAL_STATE, action) => {
