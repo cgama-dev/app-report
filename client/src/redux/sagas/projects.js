@@ -6,17 +6,17 @@ import axios from 'axios'
 
 export function* getReports() {
 
-    const projects = yield axios.get('http://localhost:8000/all-projects')
+    const data = yield axios.get('/reports')
 
-    yield put(ActionsCreators.getReportsSuccess(projects.data.data))
+    yield put(ActionsCreators.getReportsSuccess(data.data.reports))
 }
 
 export function* createReport(action) {
     
-    let project = action.project;
+    let report = action.report;
     
-    project = yield axios.post('http://localhost:8000/create-project', project)
+    const data = yield axios.post('/reports/create', report)
     
-    yield put(ActionsCreators.createReportSuccess(project.data.data))
+    yield put(ActionsCreators.createReportSuccess(data.data))
 
 }

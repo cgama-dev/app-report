@@ -14,8 +14,8 @@ class Home extends Component {
         this.props.loadDataRequest()
     }
 
-    handleProjects = (projects) => (
-        this.props.projects.map((item) => (
+    handleProjects = (reports) => (
+        this.props.reports.map((item) => (
             <List.Item key={item._id} as={Link} to={`/report/${item.url}`} >
                 <List.Content >
                     <Icon name='file alternate outline' size='huge' />
@@ -49,8 +49,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        projects: state.projects.data,
-        isLoading: state.projects.isLoading
+        reports: state.reports.data,
+        isLoading: state.reports.isLoading
     }
 }
 

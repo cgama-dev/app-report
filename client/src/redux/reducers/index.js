@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 
-import projects from './projects'
+import reports from './projects'
 
 export default combineReducers({
-    projects
+    reports
 })
 

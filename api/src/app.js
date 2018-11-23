@@ -1,13 +1,21 @@
 import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import routerReports from './routes/report-router'
 
 const app = express()
 
-app.use('/', routerReports)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(cors())
 
-app.listen(3010, () => {
-    console.log('Servidor rodando na  porta 3010')
+app.use('/reports', routerReports)
+
+app.listen(3011, () => {
+    console.log('Servidor rodandaao na s porta 3011')
 })
 
 export default app

@@ -4,7 +4,7 @@ import { createReducer } from 'reduxsauce'
 
 const INITIAL_STATE = {
     data: [],
-    project:{},
+    report:{},
     isLoading: false,
     isRedirect: false,
     error: false
@@ -28,7 +28,7 @@ export const getReportsRequest = (state = INITIAL_STATE, action) => {
 export const getReportsSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        data: action.projects,
+        data: action.reports,
         isLoading: false
     }
 }
@@ -51,7 +51,7 @@ export const createReportRequest = (state = INITIAL_STATE, action) => {
 export const createReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        project: action.project,
+        report: action.report,
         isLoading: false,
         isRedirect: true
     }
@@ -75,7 +75,7 @@ export const saveReportRequest = (state = INITIAL_STATE, action) => {
 export const saveReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        project: action.project,
+        report: action.report,
         isLoading: false,
         isRedirect: true
     }

@@ -6,15 +6,15 @@ export const { Types, Creators } = createActions({
     getReportRequest: null,
 
     getReportsRequest: null,
-    getReportsSuccess: ['projects'],
+    getReportsSuccess: ['reports'],
     getReportsFailure: null,
 
-    createReportRequest: ['project'],
-    createReportSuccess: ['project'],
+    createReportRequest: ['report'],
+    createReportSuccess: ['report'],
     createReportFailure:null,
 
     saveReportRequest: null ,
-    saveReportSuccess: ['project'],
+    saveReportSuccess: ['report'],
     saveReportFailure:null
 })
 

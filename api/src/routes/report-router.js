@@ -7,8 +7,8 @@ const controller  = ReportController()
 const router = express.Router()
 
 router.get('/', controller.query)
-router.get('/report/:id', controller.get)
-router.post('/report', controller.create)
-router.put('/report', controller.update)
+router.get('/:id', controller.get)
+router.post('/create', controller.create)
+router.put('/:id', controller.update)
 
 export default router

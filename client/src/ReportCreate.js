@@ -20,12 +20,12 @@ class ReportCreate extends Component {
 
     createReport = () => {
         if (!!this.state.projectName) {
-            const project = {
-                name: this.state.projectName,
+            const report = {
+                projectName: this.state.projectName,
                 url: this.state.projectName
             }
 
-            this.props.createReport(project)
+            this.props.createReport(report)
 
             this.close()
         } else {
@@ -55,7 +55,7 @@ class ReportCreate extends Component {
 
     render() {
         if (this.props.isRedirect) {
-            return <Redirect to={`/report/${this.props.project.url}`} />
+            return <Redirect to={`/report/${this.props.report.url}`} />
         }
         return (
             <div>
@@ -86,10 +86,11 @@ class ReportCreate extends Component {
 
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        project: state.projects.project,
-        isLoading: state.projects.isLoading,
-        isRedirect: state.projects.isRedirect
+        report: state.reports.report,
+        isLoading: state.reports.isLoading,
+        isRedirect: state.reports.isRedirect
     }
 }
 
