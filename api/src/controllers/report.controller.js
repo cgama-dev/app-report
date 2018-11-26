@@ -1,9 +1,10 @@
-import fs from 'fs'
-import promisify from 'promisify-node'
 import path from 'path';
+
 import jsreport from '../modules/jsreport.module'
 
 import ReportModel from './../models/report.model'
+
+import UtilReport from './../util/report.util'
 
 const ReportController = () => {
 
@@ -34,13 +35,9 @@ const ReportController = () => {
 
                 const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
 
-                const readFile = promisify(fs.readFile)
+                const Util = UtilReport()
 
-                const data = await readFile(dir + '/data.json')
-                const footer = await readFile(dir + '/footer.html')
-                const header = await readFile(dir + '/header.html')
-                const helpers = await readFile(dir + '/helpers.js')
-                const page = await readFile(dir + '/page.html')
+                const { data, footer, header, helpers, page } = await Util.readFile(dir)
 
                 return res.send({
                     report,
@@ -60,19 +57,19 @@ const ReportController = () => {
             try {
                 const report = await ReportModel.create(req.body)
 
-                const writeFile = promisify(fs.writeFile)
-
                 const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
 
-                if (!fs.existsSync(dir)) {
-                    fs.mkdirSync(dir);
+                const Util = UtilReport()
+
+                const bodyPdf = {
+                    data: "//Report",
+                    footer: "<!--  Report -->",
+                    header: "<!--  Report -->",
+                    helpers: "//Report",
+                    page: "<!--  Report -->"
                 }
 
-                await writeFile(dir + "/helpers.js", "// Project")
-                await writeFile(dir + "/data.json", "// Project")
-                await writeFile(dir + "/page.html", "<!-- Project: " + report.projectName + " -->")
-                await writeFile(dir + "/header.html", "<!-- Project: " + report.projectName + " -->")
-                await writeFile(dir + "/footer.html", "<!-- Project: " + report.projectName + " -->")
+                await Util.writeFile(dir, bodyPdf)
 
                 res.send(report)
 
@@ -91,45 +88,25 @@ const ReportController = () => {
                 if (!report)
                     return res.status(400).send({ error: 'Esse projeto não existe na base de dados' })
 
-                const { data, footer, header, helpers, page } = req.body
-
-                const writeFile = promisify(fs.writeFile)
-
-                const readFile = promisify(fs.readFile)
+                const Util = UtilReport()
 
                 const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
 
-                if (!fs.existsSync(dir)) {
-                    fs.mkdirSync(dir);
-                }
+                await Util.writeFile(dir, req.body)
 
-                try {
-                    await writeFile(dir + "/data.json", data)
-                    await writeFile(dir + "/footer.html", footer)
-                    await writeFile(dir + "/header.html", header)
-                    await writeFile(dir + "/helpers.js", helpers)
-                    await writeFile(dir + "/page.html", page)
-                } catch (err) {
-                    res.status(400).send({ error: 'Ocorreu algum erro ao atualizar PDF' })
-                }
-
-
-                const dataRead = await readFile(dir + '/data.json')
-                const footerRead = await readFile(dir + '/footer.html')
-                const headerRead = await readFile(dir + '/header.html')
-                const helpersRead = await readFile(dir + '/helpers.js')
-                const pageRead = await readFile(dir + '/page.html')
+                const { data, footer, header, helpers, page } = await Util.readFile(dir)
 
                 return res.send({
                     report,
-                    data: dataRead.toString(),
-                    footer: footerRead.toString(),
-                    header: headerRead.toString(),
-                    helpers: helpersRead.toString(),
-                    page: pageRead.toString()
+                    data: data.toString(),
+                    footer: footer.toString(),
+                    header: header.toString(),
+                    helpers: helpers.toString(),
+                    page: page.toString()
                 })
 
             } catch (err) {
+                console.log(err)
                 res.status(400).send({ error: 'Ocorreu algum erro ao atualizar o projeto' })
             }
 
