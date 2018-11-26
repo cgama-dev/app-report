@@ -1,10 +1,11 @@
 import fs from 'fs'
 import promisify from 'promisify-node'
 import path from 'path';
+import jsreport from '../modules/jsreport.module'
 
 import ReportModel from './../models/report.model'
 
-const ReportController = (jsreport) => {
+const ReportController = () => {
 
     const Report = {
         query: async (req, res) => {
@@ -155,7 +156,7 @@ const ReportController = (jsreport) => {
                 });
 
                 return res.end(pdfData);
-                
+
             } catch (err) {
                 return res.status(400).send({ error: 'Erro ao renderizar PDF' })
             }

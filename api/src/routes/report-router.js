@@ -2,11 +2,11 @@ import express from 'express'
 
 import ReportController from '../controllers/report.controller'
 
-const routeReport = (jsreport) => {
+const routeReport = () => {
 
     const router = express.Router()
 
-    const controller = ReportController(jsreport)
+    const controller = ReportController()
 
     router.get('/', controller.query)
     router.get('/:id', controller.get)
