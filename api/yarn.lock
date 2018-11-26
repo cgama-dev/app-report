@@ -144,6 +144,11 @@ array-unique@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
 
+asap@~2.0.3:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
+  integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
+
 asn1@0.1.11:
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.1.11.tgz#559be18376d08a4ec4dbe80877d27818639b2df7"
@@ -405,6 +410,11 @@ babel-plugin-syntax-exponentiation-operator@^6.8.0:
   version "6.13.0"
   resolved "http://registry.npmjs.org/babel-plugin-syntax-exponentiation-operator/-/babel-plugin-syntax-exponentiation-operator-6.13.0.tgz#9ee7e8337290da95288201a6a57f4170317830de"
 
+babel-plugin-syntax-object-rest-spread@^6.8.0:
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
+  integrity sha1-/WU28rzhODb/o6VFjEkDpZe7O/U=
+
 babel-plugin-syntax-trailing-function-commas@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
@@ -592,6 +602,14 @@ babel-plugin-transform-exponentiation-operator@^6.22.0:
     babel-helper-builder-binary-assignment-operator-visitor "^6.24.1"
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
     babel-runtime "^6.22.0"
+
+babel-plugin-transform-object-rest-spread@^6.26.0:
+  version "6.26.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
+  integrity sha1-DzZpLVD+9rfi1LOsFHgTepY7ewY=
+  dependencies:
+    babel-plugin-syntax-object-rest-spread "^6.8.0"
+    babel-runtime "^6.26.0"
 
 babel-plugin-transform-regenerator@^6.22.0:
   version "6.26.0"
@@ -2660,6 +2678,13 @@ node.extend@2.0.0:
   dependencies:
     is "^3.2.1"
 
+nodegit-promise@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nodegit-promise/-/nodegit-promise-4.0.0.tgz#5722b184f2df7327161064a791d2e842c9167b34"
+  integrity sha1-VyKxhPLfcycWEGSnkdLoQskWezQ=
+  dependencies:
+    asap "~2.0.3"
+
 nopt@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
@@ -2743,7 +2768,7 @@ oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
 
-object-assign@4.1.1, object-assign@^4, object-assign@^4.1.0:
+object-assign@4.1.1, object-assign@^4, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -2990,6 +3015,14 @@ process-nextick-args@~2.0.0:
 progress@1.1.8, progress@^1.1.8:
   version "1.1.8"
   resolved "http://registry.npmjs.org/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
+
+promisify-node@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/promisify-node/-/promisify-node-0.5.0.tgz#b7115a9d5cd241e939c96e260acda24938d25720"
+  integrity sha512-GR2E4qgCoKFTprhULqP2OP3bl8kHo16XtnqtkHH6be7tPW1yL6rXd15nl3oV2sLTFv1+j6tqoF69VVpFtJ/j+A==
+  dependencies:
+    nodegit-promise "^4.0.0"
+    object-assign "^4.1.1"
 
 proto-list@~1.2.1:
   version "1.2.4"

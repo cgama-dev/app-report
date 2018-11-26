@@ -1,14 +1,20 @@
 import express from 'express'
 
-import  ReportController from '../controllers/report.controller'
+import ReportController from '../controllers/report.controller'
 
-const controller  = ReportController()
+const routeReport = (jsreport) => {
 
-const router = express.Router()
+    const router = express.Router()
 
-router.get('/', controller.query)
-router.get('/:id', controller.get)
-router.post('/create', controller.create)
-router.put('/:id', controller.update)
+    const controller = ReportController(jsreport)
 
-export default router
+    router.get('/', controller.query)
+    router.get('/:id', controller.get)
+    router.post('/', controller.create)
+    router.post('/run/:id', controller.run)
+    router.put('/:id', controller.update)
+
+    return router
+}
+
+export default routeReport
