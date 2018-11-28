@@ -168,6 +168,9 @@
                 var file = new Blob([data.data], { type: 'application/pdf' });
                 var fileURL = URL.createObjectURL(file);
                 $scope.pdf = $sce.trustAsResourceUrl(fileURL);
+
+                console.log($scope.pdf)
+                
                 vm.loading.generate_pdf = false;
                 //window.open($scope.pdf);
             });

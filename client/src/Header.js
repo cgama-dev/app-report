@@ -14,7 +14,7 @@ class Header extends Component {
             <div>
                 <Menu inverted>
                     <Menu.Item as={Link} to='/' active>REPORT-PDF</Menu.Item>
-                    <Menu.Item onClick={() => this.props.runReport()} > <Icon name='play' /> Executar</Menu.Item>
+                    <Menu.Item onClick={() => this.props.generateReport()} > <Icon name='play' /> Executar</Menu.Item>
                     <Menu.Item onClick={() => this.props.updateReport()} > <Icon name='save' /> Salvar</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>

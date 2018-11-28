@@ -13,11 +13,15 @@ export const { Types, Creators } = createActions({
 
     createReportRequest: ['report'],
     createReportSuccess: ['report'],
-    createReportFailure:null,
+    createReportFailure: null,
 
     updateReportRequest: ['report'],
     updateReportSuccess: ['report'],
-    updateReportFailure:null
+    updateReportFailure: null,
+
+    generateReportRequest: ['report'],
+    generateReportSuccess: ['report'],
+    generateReportFailure: null
 })
 
 export default Creators

@@ -29,7 +29,7 @@ export function* getReports() {
 export function* createReport(action) {
 
     let report = action.report;
-    
+
     try {
         const data = yield axios.post('/reports', report)
         yield put(ActionsCreators.createReportSuccess(data.data))
@@ -40,14 +40,41 @@ export function* createReport(action) {
 
 export function* updateReport(action) {
     try {
-         
+
         let reportId = action.report.reportId;
 
         let report = action.report;
 
-        const data = yield axios.put('/reports/'+reportId, report)
+        const data = yield axios.put('/reports/' + reportId, report)
 
         yield put(ActionsCreators.updateReportSuccess(data.data))
+
+    } catch (err) {
+        yield put(ActionsCreators.updateReportFailure())
+    }
+}
+
+export function* generateReport(action) {
+    try {
+
+        let report = action.report;
+
+        const data = yield axios.post('/reports/report/generate', report, {
+            responseType: 'arraybuffer',
+            headers: {
+                'Accept': 'application/pdf'
+            }
+        })
+
+        var file = new Blob([data.data], { type: 'application/pdf' });
+        
+        var fileURL = URL.createObjectURL(file);
+        console.log(fileURL)
+
+        // $scope.pdf = $sce.trustAsResourceUrl(fileURL);
+
+
+        yield put(ActionsCreators.updateReportSuccess(fileURL))
 
     } catch (err) {
         yield put(ActionsCreators.updateReportFailure())

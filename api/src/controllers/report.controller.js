@@ -115,9 +115,9 @@ const ReportController = () => {
             }
 
         },
-        run: async (req, res) => {
+        generate: async(req, res) => {
 
-            const id = req.params.id
+            const id = req.body.reportId
 
             try {
             
@@ -126,11 +126,12 @@ const ReportController = () => {
                 if (!report)
                     return res.status(400).send({ error: 'Esse projeto não existe na base de dados' })
 
-                const Util = UtilReport()
+                // const Util = UtilReport()
                 
-                const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
+                // const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
 
-                const { data, footer, header, helpers, page } = await Util.readFile(dir)
+                const { data, footer, header, helpers, page } = req.body
+                // const { data, footer, header, helpers, page } = await Util.readFile(dir)
 
                 const pdf = await jsreport.render({
                     template: {

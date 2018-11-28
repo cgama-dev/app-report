@@ -37,6 +37,7 @@ class Report extends Component {
             this.props.getReport(this.props.match.params.projectid)
         }
     }
+
     componentWillReceiveProps(nexProps) {
         const { page, helpers, data, header, footer } = nexProps
         const report = {
@@ -50,6 +51,7 @@ class Report extends Component {
             report
         })
     }
+
     handleChangeReportTabs = fieldname => event => {
         const report = {
             ...this.state.report
@@ -62,6 +64,7 @@ class Report extends Component {
         })
 
     }
+
     updateReport = () => {
         const report = {
             ...this.state.report,
@@ -71,13 +74,15 @@ class Report extends Component {
         this.props.updateReport(report)
     }
 
-    saveReport = () => {
-        console.log("Save Report")
+    generateReport = () => {
+        const report = {
+            ...this.state.report,
+            reportId: this.props.match.params.projectid
+        }
+
+        this.props.generateReport(report)
+        
     }
-
-
-
-
 
     AceEditorType = (type, fieldname) =>
 
@@ -144,7 +149,7 @@ class Report extends Component {
         return (
 
             <div>
-                <Header updateReport={this.updateReport} saveReport={this.saveReport}></Header>
+                <Header  generateReport={this.generateReport} updateReport={this.updateReport}></Header>
                 <Container style={styleWidth}>
                     <Grid stackable>
                         <Grid.Row>
@@ -162,6 +167,10 @@ class Report extends Component {
                                             <Icon name='file pdf outline' loading={false} size='massive' />
                                             <HeaderContent as='h1'>Sem resultado</HeaderContent>
                                         </Grid.Column>
+                                        {
+                                            this.props.report &&
+                                            <object data={this.props.report} type="application/pdf" width="100%" height="100px"></object>
+                                        }
                                     </Grid>
                                 </Segment>
                             </Grid.Column>
@@ -174,7 +183,7 @@ class Report extends Component {
 }
 
 const mapStateToProps = (state) => {
-
+    console.log("DATADATADTAD", state)
     const { data, header, footer, helpers, page } = state.reports.report
 
     return {
@@ -183,14 +192,16 @@ const mapStateToProps = (state) => {
         footer,
         helpers,
         page,
-        isLoading: state.reports.isLoading
+        isLoading: state.reports.isLoading,
+        report: state.reports.report
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getReport: (reportId) => dispatch(ActionsCreators.getReportRequest(reportId)),
-        updateReport: (report) => dispatch(ActionsCreators.updateReportRequest(report))
+        updateReport: (report) => dispatch(ActionsCreators.updateReportRequest(report)),
+        generateReport: (report) => dispatch(ActionsCreators.generateReportRequest(report))
     }
 }
 

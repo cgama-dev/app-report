@@ -11,7 +11,7 @@ const routeReport = () => {
     router.get('/', controller.query)
     router.get('/:id', controller.get)
     router.post('/', controller.create)
-    router.post('/run/:id', controller.run)
+    router.post('/report/generate', controller.generate)
     router.put('/:id', controller.update)
 
     return router
