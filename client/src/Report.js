@@ -81,7 +81,7 @@ class Report extends Component {
         }
 
         this.props.generateReport(report)
-        
+
     }
 
     AceEditorType = (type, fieldname) =>
@@ -149,7 +149,7 @@ class Report extends Component {
         return (
 
             <div>
-                <Header  generateReport={this.generateReport} updateReport={this.updateReport}></Header>
+                <Header generateReport={this.generateReport} updateReport={this.updateReport}></Header>
                 <Container style={styleWidth}>
                     <Grid stackable>
                         <Grid.Row>
@@ -162,15 +162,21 @@ class Report extends Component {
                                 <Segment >
                                     <Button floated='right'>Pré - Visualizar</Button>
                                     <Divider clearing />
-                                    <Grid centered columns={4}>
+                                    <Grid >
                                         <Grid.Column style={styleHeight}>
-                                            <Icon name='file pdf outline' loading={false} size='massive' />
-                                            <HeaderContent as='h1'>Sem resultado</HeaderContent>
+                                            {
+                                                this.props.isReport &&
+
+                                                <object data={this.props.isReport} width={`98%`} height={`750px`} type="application/pdf" ></object>
+                                            }
+                                            {
+                                                !this.props.isReport &&
+                                                <div>
+                                                    <Icon name='file pdf outline' loading={false} size='massive' />
+                                                    <HeaderContent as='h1'>Sem resultado</HeaderContent>
+                                                </div>
+                                            }
                                         </Grid.Column>
-                                        {
-                                            this.props.report &&
-                                            <object data={this.props.report} type="application/pdf" width="100%" height="100px"></object>
-                                        }
                                     </Grid>
                                 </Segment>
                             </Grid.Column>
@@ -193,7 +199,7 @@ const mapStateToProps = (state) => {
         helpers,
         page,
         isLoading: state.reports.isLoading,
-        report: state.reports.report
+        isReport: state.reports.isReport
     }
 }
 

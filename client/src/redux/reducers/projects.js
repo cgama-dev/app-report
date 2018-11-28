@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     report:{},
     isLoading: false,
     isRedirect: false,
+    isReport: false,
     error: false
 }
 
@@ -113,9 +114,10 @@ export const generateReportRequest = (state = INITIAL_STATE, action) => {
 }
 
 export const generateReportSuccess = (state = INITIAL_STATE, action) => {
+    console.log(action)
     return {
         ...state,
-        report: action.report,
+        isReport: action.report,
         isLoading: false
     }
 }

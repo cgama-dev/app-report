@@ -69,12 +69,8 @@ export function* generateReport(action) {
         var file = new Blob([data.data], { type: 'application/pdf' });
         
         var fileURL = URL.createObjectURL(file);
-        console.log(fileURL)
-
-        // $scope.pdf = $sce.trustAsResourceUrl(fileURL);
-
-
-        yield put(ActionsCreators.updateReportSuccess(fileURL))
+        
+        yield put(ActionsCreators.generateReportSuccess(fileURL))
 
     } catch (err) {
         yield put(ActionsCreators.updateReportFailure())
