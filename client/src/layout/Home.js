@@ -16,7 +16,7 @@ class Home extends Component {
 
     handleProjects = (reports) => (
         this.props.reports.map((item) => (
-            <List.Item key={item._id} as={Link} to={`/report/${item.url}`} >
+            <List.Item key={item._id} as={Link} to={`/report/${item._id}`} >
                 <List.Content >
                     <Icon name='file alternate outline' size='huge' />
                     <List.Header as='span'> <h1>{item.projectName}</h1></List.Header>

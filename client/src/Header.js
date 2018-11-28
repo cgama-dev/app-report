@@ -6,13 +6,16 @@ import ReportCreate from './ReportCreate'
 
 class Header extends Component {
 
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <div>
                 <Menu inverted>
                     <Menu.Item as={Link} to='/' active>REPORT-PDF</Menu.Item>
-                    <Menu.Item > <Icon name='play' /> Executar</Menu.Item>
-                    <Menu.Item > <Icon name='save' /> Salvar</Menu.Item>
+                    <Menu.Item onClick={() => this.props.runReport()} > <Icon name='play' /> Executar</Menu.Item>
+                    <Menu.Item onClick={() => this.props.saveReport()} > <Icon name='save' /> Salvar</Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
                             <ReportCreate />

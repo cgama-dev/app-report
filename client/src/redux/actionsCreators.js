@@ -3,7 +3,9 @@ import { createActions } from 'reduxsauce'
 export const { Types, Creators } = createActions({
 
     //Projects
-    getReportRequest: null,
+    getReportRequest: ['report'],
+    getReportSuccess: ['report'],
+    getReportFailure: null,
 
     getReportsRequest: null,
     getReportsSuccess: ['reports'],

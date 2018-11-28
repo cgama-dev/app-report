@@ -18,6 +18,21 @@ export const getReportRequest = (state = INITIAL_STATE, action) => {
     }
 }
 
+export const getReportSuccess = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        report: action.report,
+        isLoading: false
+    }
+}
+
+export const getReportFailure = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        error: true
+    }
+}
+
 export const getReportsRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
@@ -90,6 +105,8 @@ export const saveReportFailure  = (state = INITIAL_STATE, action) => {
 
 export const HANDLERS = {
     [Types.GET_REPORT_REQUEST]: getReportRequest,
+    [Types.GET_REPORT_SUCCESS]: getReportSuccess,
+    [Types.GET_REPORT_FAILURE]: getReportFailure,
 
     [Types.GET_REPORTS_REQUEST]: getReportsRequest,
     [Types.GET_REPORTS_SUCCESS]: getReportsSuccess,

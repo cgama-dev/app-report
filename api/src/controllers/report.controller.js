@@ -47,6 +47,7 @@ const ReportController = () => {
                 })
 
             } catch (err) {
+                console.log(err)
                 return res.status(400).send({ error: 'Erro ao buscar report' })
             }
 
