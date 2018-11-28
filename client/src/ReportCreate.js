@@ -55,7 +55,7 @@ class ReportCreate extends Component {
 
     render() {
         if (this.props.isRedirect) {
-            return <Redirect to={`/report/${this.props.report.url}`} />
+            return <Redirect to={`/report/${this.props.report._id}`} />
         }
         return (
             <div>

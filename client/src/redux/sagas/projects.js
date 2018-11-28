@@ -4,6 +4,19 @@ import { put } from 'redux-saga/effects'
 
 import axios from 'axios'
 
+export function* getReport(action) {
+
+    try {
+        const reportId = action.report;
+        const data = yield axios.get('/reports/' + reportId)
+
+        yield put(ActionsCreators.getReportSuccess(data.data))
+
+    } catch (err) {
+        yield put(ActionsCreators.getReportFailure())
+    }
+}
+
 export function* getReports() {
     try {
         const data = yield axios.get('/reports')
@@ -13,27 +26,30 @@ export function* getReports() {
     }
 }
 
-export function* getReport(action) {
-
-    try {
-        const reportId = action.report;
-        const data = yield axios.get('/reports/' + reportId)
-
-        yield put(ActionsCreators.getReportSuccess(data.data))
-
-    } catch (err) {    
-        yield put(ActionsCreators.getReportFailure())
-    }
-}
-
 export function* createReport(action) {
 
     let report = action.report;
-
+    
     try {
         const data = yield axios.post('/reports', report)
         yield put(ActionsCreators.createReportSuccess(data.data))
     } catch (err) {
         yield put(ActionsCreators.createReportFailure())
+    }
+}
+
+export function* updateReport(action) {
+    try {
+         
+        let reportId = action.report.reportId;
+
+        let report = action.report;
+
+        const data = yield axios.put('/reports/'+reportId, report)
+
+        yield put(ActionsCreators.updateReportSuccess(data.data))
+
+    } catch (err) {
+        yield put(ActionsCreators.updateReportFailure())
     }
 }

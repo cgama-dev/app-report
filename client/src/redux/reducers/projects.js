@@ -79,24 +79,24 @@ export const createReportFailure = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const saveReportRequest = (state = INITIAL_STATE, action) => {
+export const updateReportRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
+        report: action.report,
         isLoading: true,
         isRedirect: false
     }
 }
 
-export const saveReportSuccess = (state = INITIAL_STATE, action) => {
+export const updateReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         report: action.report,
-        isLoading: false,
-        isRedirect: true
+        isLoading: false
     }
 }
 
-export const saveReportFailure  = (state = INITIAL_STATE, action) => {
+export const updateReportFailure  = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         error: true
@@ -104,6 +104,7 @@ export const saveReportFailure  = (state = INITIAL_STATE, action) => {
 }
 
 export const HANDLERS = {
+    
     [Types.GET_REPORT_REQUEST]: getReportRequest,
     [Types.GET_REPORT_SUCCESS]: getReportSuccess,
     [Types.GET_REPORT_FAILURE]: getReportFailure,
@@ -116,9 +117,9 @@ export const HANDLERS = {
     [Types.CREATE_REPORT_SUCCESS]: createReportSuccess,
     [Types.CREATE_REPORT_FAILURE]: createReportFailure,
 
-    [Types.SAVE_REPORT_REQUEST]: saveReportRequest,
-    [Types.SAVE_REPORT_SUCCESS]: saveReportSuccess,
-    [Types.SAVE_REPORT_FAILURE]: saveReportFailure
+    [Types.UPDATE_REPORT_REQUEST]: updateReportRequest,
+    [Types.UPDATE_REPORT_SUCCESS]: updateReportSuccess,
+    [Types.UPDATE_REPORT_FAILURE]: updateReportFailure
 
 }
 

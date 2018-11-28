@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 
 import ActionsCreators from './redux/actionsCreators'
 
-import { Grid, Tab, Container, Segment, Divider, Button } from 'semantic-ui-react'
+import { Grid, Tab, Container, Segment, Divider, Button, Icon, Header as HeaderContent, Loader, Dimmer } from 'semantic-ui-react'
 
 class Report extends Component {
 
@@ -20,7 +20,7 @@ class Report extends Component {
         this.state = {
             report: {
                 page: '',
-                helper: '',
+                helpers: '',
                 data: '',
                 header: '',
                 footer: ''
@@ -37,15 +37,19 @@ class Report extends Component {
             this.props.getReport(this.props.match.params.projectid)
         }
     }
-
-    runReport = () => {
-        console.log("Run Report")
+    componentWillReceiveProps(nexProps) {
+        const { page, helpers, data, header, footer } = nexProps
+        const report = {
+            page,
+            helpers,
+            data,
+            header,
+            footer
+        }
+        this.setState({
+            report
+        })
     }
-
-    saveReport = () => {
-        console.log("Save Report")
-    }
-
     handleChangeReportTabs = fieldname => event => {
         const report = {
             ...this.state.report
@@ -57,21 +61,37 @@ class Report extends Component {
             report
         })
 
-        console.log(this.state.report)
+    }
+    updateReport = () => {
+        const report = {
+            ...this.state.report,
+            reportId: this.props.match.params.projectid
+        }
+
+        this.props.updateReport(report)
     }
 
+    saveReport = () => {
+        console.log("Save Report")
+    }
+
+
+
+
+
     AceEditorType = (type, fieldname) =>
+
         <AceEditor
+            width="800px"
             mode={type}
             theme="twilight"
             name={fieldname}
-            onLoad={this.onLoad}
             onChange={this.handleChangeReportTabs(`${fieldname}`)}
             fontSize={14}
             showPrintMargin={true}
             showGutter={true}
             highlightActiveLine={true}
-            value={this.props[fieldname]}
+            value={this.state.report[fieldname]}
             setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
@@ -81,57 +101,69 @@ class Report extends Component {
             }} />
 
     render() {
+
         const panes = [
             {
-                menuItem: 'page', render: () =>
+                menuItem: { key: 'page', icon: 'html5', content: 'Page' }, render: () =>
                     <Tab.Pane>
                         {this.AceEditorType('html', 'page')}
                     </Tab.Pane>
+
             },
             {
-                menuItem: 'helper', render: () =>
+                menuItem: { key: 'helper', icon: 'js', content: 'Helper' }, render: () =>
                     <Tab.Pane>
-                        {this.AceEditorType('javascript', 'helper')}
+                        {this.AceEditorType('javascript', 'helpers')}
                     </Tab.Pane>
             },
             {
-                menuItem: 'data', render: () =>
+                menuItem: { key: 'data', icon: 'js', content: 'Data' }, render: () =>
                     <Tab.Pane>
                         {this.AceEditorType('json', 'data')}
                     </Tab.Pane>
             },
             {
-                menuItem: 'header', render: () =>
+                menuItem: { key: 'header', icon: 'html5', content: 'Header' }, render: () =>
                     <Tab.Pane>
                         {this.AceEditorType('html', 'header')}
                     </Tab.Pane>
             },
             {
-                menuItem: 'footer', render: () =>
+                menuItem: { key: 'footer', icon: 'html5', content: 'Footer' }, render: () =>
                     <Tab.Pane>
                         {this.AceEditorType('html', 'footer')}
                     </Tab.Pane>
             },
         ]
-
+        const styleWidth = {
+            width: "98%"
+        }
+        const styleHeight = {
+            height: "800px"
+        }
         return (
+
             <div>
-                <Header runReport={this.runReport} saveReport={this.saveReport}></Header>
-                <Container>
+                <Header updateReport={this.updateReport} saveReport={this.saveReport}></Header>
+                <Container style={styleWidth}>
                     <Grid stackable>
                         <Grid.Row>
-                            <Grid.Column width={8} verticalAlign="middle" >
-                                <br />
+                            <Grid.Column width={8} verticalAlign="middle" style={styleHeight}>
                                 <Tab panes={panes} />
                             </Grid.Column>
-                            <Grid.Column width={8}>
+                            <Grid.Column width={8}  >
                                 <br />
-                                <Segment>
+                                <br />
+                                <Segment >
                                     <Button floated='right'>Pré - Visualizar</Button>
                                     <Divider clearing />
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore...
-                              </Segment>
+                                    <Grid centered columns={4}>
+                                        <Grid.Column style={styleHeight}>
+                                            <Icon name='file pdf outline' loading={false} size='massive' />
+                                            <HeaderContent as='h1'>Sem resultado</HeaderContent>
+                                        </Grid.Column>
+                                    </Grid>
+                                </Segment>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -142,21 +174,23 @@ class Report extends Component {
 }
 
 const mapStateToProps = (state) => {
-    
-    const { data, header, footer, helper, page } = state.reports.report
+
+    const { data, header, footer, helpers, page } = state.reports.report
 
     return {
         data,
         header,
         footer,
-        helper,
-        page
+        helpers,
+        page,
+        isLoading: state.reports.isLoading
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getReport: (reportId) => dispatch(ActionsCreators.getReportRequest(reportId))
+        getReport: (reportId) => dispatch(ActionsCreators.getReportRequest(reportId)),
+        updateReport: (report) => dispatch(ActionsCreators.updateReportRequest(report))
     }
 }
 

@@ -15,9 +15,9 @@ export const { Types, Creators } = createActions({
     createReportSuccess: ['report'],
     createReportFailure:null,
 
-    saveReportRequest: null ,
-    saveReportSuccess: ['report'],
-    saveReportFailure:null
+    updateReportRequest: ['report'],
+    updateReportSuccess: ['report'],
+    updateReportFailure:null
 })
 
 export default Creators

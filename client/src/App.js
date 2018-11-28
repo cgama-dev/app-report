@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+
+
+
 import Home from './layout/Home'
 
 import { Provider } from 'react-redux'
+
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 import Report from './Report'
