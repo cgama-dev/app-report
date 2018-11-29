@@ -4,7 +4,7 @@ import { Grid, Button, Icon, Modal, Form } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
 
-import ActionsCreators from './redux/actionsCreators'
+import ActionsCreators from './../../actionsCreators'
 
 import { Redirect } from 'react-router-dom'
 

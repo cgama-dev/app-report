@@ -6899,6 +6899,7 @@ react-notifications-component@^1.0.0:
 react-notifications@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/react-notifications/-/react-notifications-1.4.3.tgz#7060d339896f125a5b183ebcd04526980a433222"
+  integrity sha1-cGDTOYlvElpbGD680EUmmApDMiI=
   dependencies:
     classnames "^2.1.1"
     prop-types "^15.5.10"

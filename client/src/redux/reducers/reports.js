@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     isLoading: false,
     isRedirect: false,
     isReport: false,
+    isRendering:false,
     error: false
 }
 
@@ -37,7 +38,8 @@ export const getReportFailure = (state = INITIAL_STATE, action) => {
 export const getReportsRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        isReport: false
     }
 }
 
@@ -60,7 +62,10 @@ export const createReportRequest = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         isLoading: true,
-        isRedirect: false
+        isRendering: false, 
+        isRedirect: false,
+        isReport: false
+        
     }
 }
 
@@ -69,7 +74,9 @@ export const createReportSuccess = (state = INITIAL_STATE, action) => {
         ...state,
         report: action.report,
         isLoading: false,
-        isRedirect: true
+        isRedirect: true,
+        isRendering: false,
+        isReport: false
     }
 }
 
@@ -93,7 +100,8 @@ export const updateReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         report: action.report,
-        isLoading: false
+        isLoading: false,
+        isRendering: false
     }
 }
 
@@ -109,6 +117,7 @@ export const generateReportRequest = (state = INITIAL_STATE, action) => {
         ...state,
         report: action.report,
         isLoading: true,
+        isRendering: true,
         isRedirect: false
     }
 }
@@ -118,7 +127,8 @@ export const generateReportSuccess = (state = INITIAL_STATE, action) => {
     return {
         ...state,
         isReport: action.report,
-        isLoading: false
+        isLoading: false,
+        isRendering: false
     }
 }
 

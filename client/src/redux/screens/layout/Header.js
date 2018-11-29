@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import ReportCreate from '../ReportCreate'
+import ReportCreate from '../report/ReportCreate'
 
 class Header extends Component {
 

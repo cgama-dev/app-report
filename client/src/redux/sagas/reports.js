@@ -66,9 +66,9 @@ export function* generateReport(action) {
             }
         })
 
-        var file = new Blob([data.data], { type: 'application/pdf' });
+        const file = new Blob([data.data], { type: 'application/pdf' });
         
-        var fileURL = URL.createObjectURL(file);
+        const fileURL = URL.createObjectURL(file);
         
         yield put(ActionsCreators.generateReportSuccess(fileURL))
 

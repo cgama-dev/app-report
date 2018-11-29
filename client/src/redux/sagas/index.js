@@ -2,7 +2,7 @@ import { takeLatest} from 'redux-saga/effects'
 
 import { Types } from './../actionsCreators'
 
-import { getReport, getReports, createReport, updateReport, generateReport } from './projects'
+import { getReport, getReports, createReport, updateReport, generateReport } from './reports'
 
 export default function* rootSagas() {
     yield takeLatest(Types.GET_REPORTS_REQUEST, getReports)

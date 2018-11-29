@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-
-
-import Home from './layout/Home'
+import Home from './redux/screens/layout/Home'
 
 import { Provider } from 'react-redux'
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
-import Report from './Report'
+import Report from './redux/screens/report/Report'
 
 import store from './redux'
 

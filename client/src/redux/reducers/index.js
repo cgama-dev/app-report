@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-import reports from './projects'
+import reports from './reports'
 
 export default combineReducers({
     reports

@@ -8,7 +8,9 @@ import 'brace/theme/twilight';
 
 import { connect } from 'react-redux'
 
-import ActionsCreators from './redux/actionsCreators'
+import ActionsCreators from './../../actionsCreators'
+
+
 
 import { Grid, Tab, Container, Segment, Divider, Button, Icon, Header as HeaderContent, Loader, Dimmer } from 'semantic-ui-react'
 
@@ -26,6 +28,7 @@ class Report extends Component {
                 footer: ''
             }
         }
+        
     }
 
     componentDidMount() {
@@ -36,6 +39,8 @@ class Report extends Component {
         if (this.props.match.params.projectid !== prevProps.match.params.projectid) {
             this.props.getReport(this.props.match.params.projectid)
         }
+
+
     }
 
     componentWillReceiveProps(nexProps) {
@@ -82,12 +87,14 @@ class Report extends Component {
 
         this.props.generateReport(report)
 
+        this.setState({ loading: true })
+
     }
 
     AceEditorType = (type, fieldname) =>
 
         <AceEditor
-            width="800px"
+            width="100%"
             mode={type}
             theme="twilight"
             name={fieldname}
@@ -141,14 +148,14 @@ class Report extends Component {
             },
         ]
         const styleWidth = {
-            width: "98%"
+            width: "95%"
         }
         const styleHeight = {
             height: "800px"
         }
         return (
-
             <div>
+                
                 <Header generateReport={this.generateReport} updateReport={this.updateReport}></Header>
                 <Container style={styleWidth}>
                     <Grid stackable>
@@ -156,28 +163,31 @@ class Report extends Component {
                             <Grid.Column width={8} verticalAlign="middle" style={styleHeight}>
                                 <Tab panes={panes} />
                             </Grid.Column>
-                            <Grid.Column width={8}  >
+                            <Grid.Column centered width={8}  >
                                 <br />
                                 <br />
                                 <Segment >
                                     <Button floated='right'>Pré - Visualizar</Button>
                                     <Divider clearing />
-                                    <Grid >
-                                        <Grid.Column style={styleHeight}>
-                                            {
-                                                this.props.isReport &&
-
+                                    {
+                                        this.props.isReport &&
+                                        <Grid >
+                                            <Grid.Column style={styleHeight}>
                                                 <object data={this.props.isReport} width={`98%`} height={`750px`} type="application/pdf" ></object>
-                                            }
-                                            {
-                                                !this.props.isReport &&
-                                                <div>
-                                                    <Icon name='file pdf outline' loading={false} size='massive' />
-                                                    <HeaderContent as='h1'>Sem resultado</HeaderContent>
-                                                </div>
-                                            }
-                                        </Grid.Column>
-                                    </Grid>
+                                            </Grid.Column>
+                                        </Grid>
+
+                                    }
+
+                                    {
+                                        !this.props.isReport &&
+                                        <Grid centered columns={3}>
+                                            <Grid.Column style={styleHeight}>
+                                                <Icon name='file pdf outline' loading={this.props.isRendering} size='massive' />
+                                                <HeaderContent as='h1'>Sem resultado</HeaderContent>
+                                            </Grid.Column>
+                                        </Grid>
+                                    }
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>
@@ -189,7 +199,7 @@ class Report extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("DATADATADTAD", state)
+
     const { data, header, footer, helpers, page } = state.reports.report
 
     return {
@@ -199,7 +209,8 @@ const mapStateToProps = (state) => {
         helpers,
         page,
         isLoading: state.reports.isLoading,
-        isReport: state.reports.isReport
+        isReport: state.reports.isReport,
+        isRendering: state.reports.isRendering
     }
 }
 
