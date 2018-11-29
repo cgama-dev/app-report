@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 
-mongoose.connect('mongodb://cgamadev:cgama123@ds161856.mlab.com:61856/appreport', {
+mongoose.connect('mongodb://reportlocal:reportlocal123@ds121624.mlab.com:21624/db-report-local', {
     useNewUrlParser: true
 })
 

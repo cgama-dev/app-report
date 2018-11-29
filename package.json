@@ -7,9 +7,10 @@
         "concurrently": "^4.1.0"
     },
     "scripts": {
-        "client": "cd client && npm start",
-        "server": "cd api && npm start",
-        "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+        "loader": "yarn && cd client && yarn && cd ../api && yarn",
+        "client": "cd client && yarn start",
+        "server": "cd api && yarn start",
+        "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "author": "",
     "license": "ISC",

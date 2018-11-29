@@ -3,17 +3,13 @@
 -> PDF System Generation [handlebars](http://handlebarsjs.com/) with phantom pdf
 
 ## Technologies:
-* Front-end: Semantic-UI , React, React-Saga
+* Front-end: Semantic-UI , React, Redux-Saga
 * Back-end: Nodejs, Express, JsReport, Phantom-pdf
 * DB: MongoDB
 
 ## Run this project (Linux Ubuntu)
 
-> yarn
-
-> cd api && yarn 
-
-> cd client && yarn 
+> yarn loader
 
 > yarn start 
 
