@@ -10,7 +10,6 @@ import Report from './redux/screens/report/Report'
 
 import store from './redux'
 
-
 class App extends Component {
   render() {
     return (

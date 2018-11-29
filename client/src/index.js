@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
 import 'react-notifications/lib/notifications.css';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
