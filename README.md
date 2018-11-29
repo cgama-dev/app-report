@@ -3,22 +3,22 @@
 -> PDF System Generation [handlebars](http://handlebarsjs.com/) with phantom pdf
 
 ## Technologies:
-* Front-end: HTML, JS, CSS, angularjs
-* Back-end: Nodejs, Express, Phantom-pdf
+* Front-end: Semantic-UI , React, React-Saga
+* Back-end: Nodejs, Express, JsReport, Phantom-pdf
 * DB: MongoDB
 
 ## Run this project (Linux Ubuntu)
 
-> npm install
+> yarn
 
-> sudo service mongod start
+> cd api && yarn 
 
-> node server
+> cd client && yarn 
 
->> Open http://localhost:8000
+> yarn start 
 
 ## Rest just sending data
--> Do a post with for **"/generate-pdf"**, sending as data:
+-> Do a post with for **"/generate"**, sending as data:
 ```javascript
 {
     projectName: projectname,
