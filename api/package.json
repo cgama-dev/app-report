@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "babel-node src/app.js --presets env",
     "build": "babel src -s -D -d dist --presets env ",
-    "start": "node dist/app",
+    "start": "yarn build && node dist/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
