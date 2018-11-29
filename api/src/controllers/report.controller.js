@@ -1,7 +1,5 @@
 import path from 'path';
 
-import jsreport from '../modules/jsreport.module'
-
 import ReportModel from './../models/report.model'
 
 import UtilReport from './../util/report.util'
@@ -126,37 +124,9 @@ const ReportController = () => {
                 if (!report)
                     return res.status(400).send({ error: 'Esse projeto não existe na base de dados' })
 
-                // const Util = UtilReport()
-                
-                // const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
+                const Util = UtilReport()
 
-                const { data, footer, header, helpers, page } = req.body
-                // const { data, footer, header, helpers, page } = await Util.readFile(dir)
-
-                const pdf = await jsreport.render({
-                    template: {
-                        content: page,
-                        helpers: helpers,
-                        engine: 'handlebars',
-                        recipe: 'phantom-pdf',
-                        phantom: {
-                            format: "A4",
-                            width: "700px",
-                            margin: "1cm",
-                            numberOfWorkers: 1,
-                            timeout: 180000,
-                            allowLocalFilesAccess: false,
-                            header: header,
-                            headerHeight: "3cm",
-                            footer: footer,
-                            footerHeight: "3cm"
-                        }
-
-                    },
-                    data: data
-                });
-
-                const pdfData = pdf.content
+                const pdfData  = await Util.generatePdf(req.body)
 
                 res.writeHead(200, {
                     'Content-Type': 'application/pdf',
@@ -167,7 +137,7 @@ const ReportController = () => {
                 return res.end(pdfData)
 
             } catch (err) {
-                console.log(err)
+                
                 return res.status(400).send({ error: 'Erro ao renderizar PDF' })
             }
         }

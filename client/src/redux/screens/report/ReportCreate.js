@@ -59,7 +59,7 @@ class ReportCreate extends Component {
         }
         return (
             <div>
-                <Button inverted color='green' onClick={() => this.setState({ open: true })} >
+                <Button inverted color='grey' onClick={() => this.setState({ open: true })} >
                     <Icon name='plus circle' /> Criar novo projeto
                 </Button>
                 <Modal

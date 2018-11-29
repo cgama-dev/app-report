@@ -1,6 +1,6 @@
 import fs from 'fs'
 import promisify from 'promisify-node'
-
+import jsreport from '../modules/jsreport.module'
 
 const UtilReport = () => {
     const Report = {
@@ -48,7 +48,7 @@ const UtilReport = () => {
 
             return true
         },
-        renderPdf: async (bodyPdf) => {
+        generatePdf: async (bodyPdf) => {
 
             const { data, footer, header, helpers, page } = bodyPdf
 

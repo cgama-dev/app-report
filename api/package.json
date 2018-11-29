@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --presets babel-preset-env --plugins babel-plugin-transform-object-rest-spread src/app.js",
+    "dev": "babel-node src/app.js --presets env",
+    "build": "babel src -s -D -d dist --presets env ",
+    "start": "node dist/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
@@ -31,5 +30,11 @@
     "promisify-node": "^0.5.0",
     "restify": "^7.2.3",
     "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0"
   }
 }

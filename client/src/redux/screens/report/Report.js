@@ -12,7 +12,7 @@ import ActionsCreators from './../../actionsCreators'
 
 
 
-import { Grid, Tab, Container, Segment, Divider, Button, Icon, Header as HeaderContent, Loader, Dimmer } from 'semantic-ui-react'
+import { Grid, Tab, Container, Segment, Divider, Button, Icon, Header as HeaderContent} from 'semantic-ui-react'
 
 class Report extends Component {
 
@@ -28,7 +28,7 @@ class Report extends Component {
                 footer: ''
             }
         }
-        
+
     }
 
     componentDidMount() {
@@ -155,9 +155,12 @@ class Report extends Component {
         }
         return (
             <div>
-                
-                <Header generateReport={this.generateReport} updateReport={this.updateReport}></Header>
+
+                <Header isLoading={this.props.isLoading} generateReport={this.generateReport} updateReport={this.updateReport}>
+
+                </Header>
                 <Container style={styleWidth}>
+
                     <Grid stackable>
                         <Grid.Row>
                             <Grid.Column width={8} verticalAlign="middle" style={styleHeight}>
@@ -190,8 +193,11 @@ class Report extends Component {
                                     }
                                 </Segment>
                             </Grid.Column>
+                            
                         </Grid.Row>
+                       
                     </Grid>
+
                 </Container>
             </div>
         )
