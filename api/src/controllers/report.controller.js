@@ -20,7 +20,9 @@ const ReportController = () => {
 
         },
         get: async (req, res) => {
+            
             const id = req.params.id
+
             try {
                 const report = await ReportModel.findOne({
                     _id: id
@@ -37,11 +39,11 @@ const ReportController = () => {
 
                 return res.send({
                     report,
-                    data: data,
-                    footer: footer,
-                    header: header,
-                    helpers: helpers,
-                    page: page
+                    data,
+                    footer,
+                    header,
+                    helpers,
+                    page
                 })
 
             } catch (err) {

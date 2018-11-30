@@ -6,10 +6,11 @@ import ActionCretors from './../../actionsCreators'
 
 import { Link } from 'react-router-dom'
 
-import { Container, List, Icon, Divider, Loader } from 'semantic-ui-react'
+import { Container, List, Icon, Divider, Loader, Menu } from 'semantic-ui-react'
 
 import Header from './Header'
 
+import Footer from './Footer'
 
 class Home extends Component {
 
@@ -38,7 +39,7 @@ class Home extends Component {
                 <Divider />
                 {
                     <Container>
-                      
+
                         {
                             !this.props.isLoading &&
                             <List horizontal relaxed='very'>
@@ -47,6 +48,7 @@ class Home extends Component {
                         }
                     </Container>
                 }
+                <Footer/>
             </div>
         )
     }
