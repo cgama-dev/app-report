@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col=12 mt-3">
+                    <div class="jumbotron ">
+                        <h1 class="display-4">Projeto Report</h1>
+
+                        <h3>Tecnologias Utilizadas: </h3>
+                       
+                        <ul class="list-group">
+                            <li class="list-group-item active"><h3>BackEnd</h3></li>
+                            {{#each backend}}
+                                    <li class="list-group-item">{{name}}</li>
+                            {{/each}}
+                        </ul>
+                        <br>
+                        <ul class="list-group">
+                            <li class="list-group-item active"><h3>FronEnd</h3></li>
+                            {{#each frontend}}
+                                    <li class="list-group-item">{{name}}</li>
+                            {{/each}}
+                        </ul>
+
+                        <hr class="my-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

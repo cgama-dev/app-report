@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 
-mongoose.connect('mongodb://reportlocal:reportlocal123@ds121624.mlab.com:21624/db-report-local', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
 })
 

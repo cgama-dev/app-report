@@ -1,0 +1,23 @@
+{
+    "frontend": [{
+            "name": "React"
+        },
+        {
+            "name": "Redux-Saga"
+        },
+        {
+            "name": "Semantic-UI"
+        }
+    ],
+    "backend": [{
+            "name": "NodeJS"
+        },
+        {
+            "name": "MongoDB"
+        },
+        {
+            "name": "JsReportaaa"
+        }
+    ]
+
+}

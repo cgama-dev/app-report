@@ -31,7 +31,7 @@ const ReportController = () => {
                 if (!report)
                     return res.status(400).send({ error: ' Erro ao buscar report' })
 
-                const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
+                const dir = path.resolve("./build/reports/" + report._id + '-' + report.url)
 
                 const Util = UtilReport()
 
@@ -56,9 +56,9 @@ const ReportController = () => {
             try {
                 const report = await ReportModel.create(req.body)
 
-                const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
+                const dir = path.resolve("./build/reports/" + report._id + '-' + report.url)
 
-                const defaultDir = path.resolve("./src/reports/default")
+                const defaultDir = path.resolve("./build/reports/default")
 
                 const Util = UtilReport()
 
@@ -94,7 +94,7 @@ const ReportController = () => {
 
                 const Util = UtilReport()
 
-                const dir = path.resolve("./src/reports/" + report._id + '-' + report.url)
+                const dir = path.resolve("./build/reports/" + report._id + '-' + report.url)
 
                 await Util.writeFile(dir, req.body)
 
@@ -128,7 +128,11 @@ const ReportController = () => {
 
                 const Util = UtilReport()
 
+                // console.log(req.body)
+
                 const pdfData  = await Util.generatePdf(req.body)
+
+                console.log(pdfData)
 
                 res.writeHead(200, {
                     'Content-Type': 'application/pdf',
@@ -139,7 +143,7 @@ const ReportController = () => {
                 return res.end(pdfData)
 
             } catch (err) {
-                
+                console.log(err)
                 return res.status(400).send({ error: 'Erro ao renderizar PDF' })
             }
         }
